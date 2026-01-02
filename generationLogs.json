@@ -1,0 +1,24 @@
+[
+  {
+    "Message": "Submit or reset type button outside of a form. Interaction is not generated! Current component id '6c075fa4-4bde-477c-b66b-daf573821bc3', view id '2a007bee-2e4a-43a5-ad6e-549310d03bbb'",
+    "Level": "Warning",
+    "Reason": "Unspecified",
+    "Category": "Form",
+    "Context": {
+      "ComponentId": "6c075fa4-4bde-477c-b66b-daf573821bc3",
+      "ViewId": "2a007bee-2e4a-43a5-ad6e-549310d03bbb"
+    },
+    "UTCTimestamp": "2026-01-02T16:22:06.7561726Z"
+  },
+  {
+    "Message": "Component '' with id '64f05db2-73e0-47dc-aa92-f88e3218795b' has no tag, no content and no children. Nothing generated.",
+    "Level": "Error",
+    "Reason": "NotFound",
+    "Category": "Component",
+    "Context": {
+      "ComponentId": "64f05db2-73e0-47dc-aa92-f88e3218795b",
+      "ViewId": "2a007bee-2e4a-43a5-ad6e-549310d03bbb"
+    },
+    "UTCTimestamp": "2026-01-02T16:22:06.7574745Z"
+  }
+]

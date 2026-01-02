@@ -1,0 +1,35 @@
+<igx-navbar class="app-navigation-bar">
+  <igx-navbar-action>
+    <button igxIconButton="flat" class="menu-icon-button">
+      <igx-icon class="icon">
+        menu
+      </igx-icon>
+    </button>
+  </igx-navbar-action>
+  <igx-navbar-title class="navbar-content">
+    <div class="row-layout navigation-title-row-layout">
+      <igx-icon class="chat-icon">
+        chat
+      </igx-icon>
+      <h6 class="app-title">
+        AI Chatbot
+      </h6>
+    </div>
+  </igx-navbar-title>
+</igx-navbar>
+<igx-list class="chat-history">
+  <igx-list-item [selected]="this.chatHistorySelectedItem != null && this.chatHistorySelectedItem === '0'" (click)="chatHistorySelectedItem = '0'">
+    <span igxListLineTitle>Hello, how can I help you today?</span>
+  </igx-list-item>
+</igx-list>
+<div class="row-layout input-area">
+  <igx-input-group type="box" class="message-input">
+    <textarea placeholder="Type your message here..." igxInput></textarea>
+  </igx-input-group>
+  <button igxButton="contained" type="button" class="send-button">
+    <igx-icon>
+      send
+    </igx-icon>
+    <span>Send</span>
+  </button>
+</div>
