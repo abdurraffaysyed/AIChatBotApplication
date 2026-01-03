@@ -12,7 +12,7 @@ import { ChatService } from '../chat.service';
 })
 export class AIChatBotFrontEndComponent {
   public chatHistorySelectedItem?: string;
-  public message: string = '';
+  public message= '';
 
   constructor(private chatService: ChatService) {}
 
