@@ -11,10 +11,10 @@ import { ChatService } from '../chat.service';
   templateUrl: './aichat-bot-front-end.component.html',
   styleUrls: ['./aichat-bot-front-end.component.scss']
 })
-export class AIChatBotFrontEndComponent {
+export class AIChatBotFrontEndComponent implements OnInit {
   public chatHistorySelectedItem?: string;
   public message = '';
-  public chatMessages: Array<{ sender: 'user'|'bot', text: string }> = [
+  public chatMessages: { sender: 'user'|'bot', text: string }[] = [
     { sender: 'bot', text: 'Hello, how can I help you today?' }
   ];
   public isLoading = false;
@@ -29,7 +29,7 @@ export class AIChatBotFrontEndComponent {
         if (el) {
           el.scrollTop = el.scrollHeight;
         }
-      } catch (e) {
+      } catch (_e) {
         // ignore
       }
     }, 0);
