@@ -3,7 +3,7 @@ spring:
     name: AI Demo Project
   ai:
     ollama:
-      base-url: http://localhost:11434
+      base-url: https://897194260c24.ngrok-free.app
       chat:
         options:
           model: llama3

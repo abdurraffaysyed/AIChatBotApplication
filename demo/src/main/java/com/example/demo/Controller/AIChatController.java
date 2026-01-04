@@ -3,16 +3,14 @@ package com.example.demo.Controller;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/chat")
+@CrossOrigin(origins = "http://localhost:10252")
 public class AIChatController {
     private final ChatClient chatClient;
 
@@ -21,8 +19,7 @@ public class AIChatController {
     }
 
     @PostMapping("/ask")
-    @Async
-    public CompletableFuture<Map<String, String>> askAi(@RequestBody Map<String, String> payload) {
+    public Map<String, String> askAi(@RequestBody Map<String, String> payload) {
         // Extract the user's message from the JSON body
         String userMessage = payload.get("message");
 
@@ -33,7 +30,7 @@ public class AIChatController {
                 .content();
 
         // Return the response as JSON
-        return CompletableFuture.completedFuture(Map.of("answer", response));
+        return Map.of("answer", response);
     }
 
 }
