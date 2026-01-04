@@ -16,20 +16,32 @@
       </h6>
     </div>
   </igx-navbar-title>
+  <igx-navbar-action>
+    <button igxIconButton="flat" class="theme-toggle" (click)="toggleTheme()" [attr.aria-pressed]="isDarkMode">
+      <igx-icon class="icon">
+        {{ isDarkMode ? 'light_mode' : 'dark_mode' }}
+      </igx-icon>
+    </button>
+  </igx-navbar-action>
 </igx-navbar>
-<igx-list class="chat-history">
-  <igx-list-item [selected]="this.chatHistorySelectedItem != null && this.chatHistorySelectedItem === '0'" (click)="chatHistorySelectedItem = '0'">
-    <span igxListLineTitle>Hello, how can I help you today?</span>
+<igx-list class="chat-history" #history>
+  <igx-list-item *ngFor="let m of chatMessages; let i = index" [selected]="chatHistorySelectedItem != null && chatHistorySelectedItem === i.toString()" (click)="chatHistorySelectedItem = i.toString()">
+    <div class="message" [ngClass]="m.sender === 'user' ? 'user' : 'bot'">
+      <span igxListLineTitle>{{ m.text }}</span>
+    </div>
   </igx-list-item>
-</igx-list>
+  <igx-list-item *ngIf="isLoading">
+    <div class="message bot loader">
+      <span class="typing-dots"><span></span><span></span><span></span></span>
+    </div>
+  </igx-list-item>
+</igx-list> 
 <form class="row-layout input-area" (ngSubmit)="onSubmit()" #messageForm="ngForm">
   <igx-input-group type="box" class="message-input">
     <textarea placeholder="Type your message here..." igxInput name="message" [(ngModel)]="message" required></textarea>
   </igx-input-group>
-  <button igxButton="contained" type="submit" class="send-button" [disabled]="!message?.trim() || messageForm.form.invalid">
-    <igx-icon>
-      send
-    </igx-icon>
+  <button igxButton="contained" type="submit" class="send-button" [disabled]="isLoading || !message?.trim() || messageForm.form.invalid">
+    <igx-icon>send</igx-icon>
     <span>Send</span>
   </button>
-</form> 
+</form>  
