@@ -32,7 +32,7 @@
   gap: 1rem;
 }
 .menu-icon-button {
-  --foreground: var(--ig-primary-500-contrast);
+  --foreground: var(--navbar-text);
 }
 .message-input {
   height: max-content;
@@ -46,17 +46,17 @@
   flex-shrink: 0;
 }
 .icon {
-  color: var(--ig-primary-500-contrast);
+  color: var(--navbar-text);
 }
 .chat-icon {
   --size: 24px;
   font-size: 24px;
   width: 24px;
   height: 24px;
-  color: var(--ig-primary-500-contrast);
+  color: var(--navbar-text);
 }
 .app-title {
-  color: var(--ig-primary-500-contrast);
+  color: var(--navbar-text);
   height: max-content;
   min-width: min-content;
 }
@@ -141,6 +141,8 @@
   --placeholder: #9b9b9b;
   --send-bg: var(--user-bg);
   --send-color: var(--user-text);
+  --typing-dot-color: #ffffff;
+  --typing-dot-size: 10px;
 
   .app-navigation-bar {
     --igx-navbar-background: var(--navbar-bg);
@@ -160,7 +162,31 @@
     color: var(--send-color);
   }
   .icon { color: var(--navbar-text); }
+
+  /* make typing dots more visible in dark mode */
+  .typing-dots span {
+    background: var(--typing-dot-color) !important;
+    width: var(--typing-dot-size) !important;
+    height: var(--typing-dot-size) !important;
+    box-shadow: 0 0 10px rgba(255,255,255,0.18);
+  }
+
+  /* dark loader bubble */
+  .message.loader .typing-dots {
+    background: rgba(255,255,255,0.04);
+    padding: 8px 14px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @keyframes typing {
+    0% { opacity: 0.2; transform: translateY(0) scale(1); }
+    40% { opacity: 1; transform: translateY(-6px) scale(1.15); }
+    100% { opacity: 0.2; transform: translateY(0) scale(1); }
+  }
 }
+
 .chat-history {
   height: max-content;
   flex: 1 1 auto;
@@ -190,18 +216,33 @@
   padding: 0;
 }
 
+/* loader bubble styling */
+.message.loader .typing-dots {
+  background: rgba(0,0,0,0.05);
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+/* make the typing content more readable on both light and dark */
+.typing-dots span {
+  opacity: 0.95;
+}
+
 .typing-dots {
   display: inline-flex;
   gap: 6px;
   align-items: center;
 }
 .typing-dots span {
-  width: 8px;
-  height: 8px;
-  background: #cfcfcf;
+  --typing-dot-size: 8px;
+  --typing-dot-color: #cfcfcf;
+  width: var(--typing-dot-size);
+  height: var(--typing-dot-size);
+  background: var(--typing-dot-color);
   border-radius: 50%;
   display: inline-block;
   animation: typing 1s infinite;
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
 .typing-dots span:nth-child(2){ animation-delay: 0.15s; }
 .typing-dots span:nth-child(3){ animation-delay: 0.3s; }

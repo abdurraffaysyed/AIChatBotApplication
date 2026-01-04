@@ -31,3 +31,184 @@ html, body {
 .outer-wrapper > *:not(router-outlet) {
   width: 100%;
 }
+
+/* Global dark mode rules - applied when document.documentElement has .dark-mode */
+/* Build on component-level variables by forcing important overrides on third-party components
+   so no white backgrounds or separators remain. */
+.dark-mode, .dark-mode body, .dark-mode html {
+  background: #000 !important;
+  color: #fff !important;
+  height: 100%;
+}
+
+/* Top-level app containers */
+.dark-mode app-root,
+.dark-mode .outer-wrapper,
+.dark-mode .app-navigation-bar,
+.dark-mode .content-area,
+.dark-mode .chat-history,
+.dark-mode igx-list,
+.dark-mode igx-list-item,
+.dark-mode igx-list__container,
+.dark-mode igx-list__item,
+.dark-mode igx-list__item__content,
+.dark-mode igx-list__header,
+.dark-mode igx-list__separator {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* Explicitly set the chat area background to black so the full window is dark */
+.dark-mode .chat-history {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Remove white bands from list containers */
+.dark-mode .igx-list__container,
+.dark-mode .igx-list__items,
+.dark-mode .igx-list__content,
+.dark-mode .igx-list__items-container {
+  background: transparent !important;
+}
+
+/* Ensure list items are transparent and inherit text color */
+.dark-mode igx-list-item,
+.dark-mode igx-list-item * {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* Inputs, textareas and input groups */
+.dark-mode igx-input-group,
+.dark-mode textarea,
+.dark-mode .message-input textarea,
+.dark-mode .igx-input,
+.dark-mode input {
+  background: #0f0f0f !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+.dark-mode .message-input textarea::placeholder { color: rgba(255,255,255,0.5) !important; }
+
+/* Buttons */
+.dark-mode .send-button,
+.dark-mode .theme-toggle,
+.dark-mode button[igxIconButton],
+.dark-mode .igx-button {
+  background: var(--send-bg, #0b66d0) !important;
+  color: var(--send-color, #fff) !important;
+}
+
+/* Remove any separators or dividers that show white */
+.dark-mode .igx-divider,
+.dark-mode .igx-list__header,
+.dark-mode .igx-list__separator,
+.dark-mode .igx-list__header-content {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* Ensure the navbar uses dark background and white text */
+.dark-mode .app-navigation-bar {
+  --igx-navbar-background: #000 !important;
+  --igx-navbar-text-color: #fff !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+
+/* Force page elements to use the dark background so no light areas remain */
+.dark-mode .igx-surface,
+.dark-mode .igx-layout__row,
+.dark-mode .igx-layout__col {
+  background: transparent !important;
+}
+
+/* If any component adds shadows, dim them so they don't look like white bars */
+.dark-mode .igx-list__container, .dark-mode .igx-card { box-shadow: none !important; }
+
+/* Target input group internal wrappers and the input area to remove leftover white rounded backgrounds */
+.dark-mode .input-area,
+.dark-mode .message-input,
+.dark-mode igx-input-group,
+.dark-mode .igx-input-group__container,
+.dark-mode .igx-input-group__box,
+.dark-mode .igx-input-group__wrapper,
+.dark-mode .igx-input-group__content,
+.dark-mode .igx-input,
+.dark-mode .igx-input__container,
+.dark-mode .igx-input__group {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Force the visual box around the input to be dark and seamless */
+.dark-mode .message-input textarea,
+.dark-mode igx-input-group::part(internal) {
+  background: #0f0f0f !important;
+  color: #fff !important;
+}
+
+/* Make send button match dark theme */
+.dark-mode .send-button {
+  background: var(--send-bg, #0b66d0) !important;
+  color: var(--send-color, #fff) !important;
+  border-color: transparent !important;
+}
+
+/* Additional aggressive overrides to remove any remaining white bands and ensure full-page black */
+.dark-mode app-root > *,
+.dark-mode .outer-wrapper > *,
+.dark-mode .content-area > * {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+/* If any element has a top border or padding causing a white strip, hide it */
+.dark-mode .input-area,
+.dark-mode .input-area:before,
+.dark-mode .input-area:after,
+.dark-mode .message-input:before,
+.dark-mode .message-input:after {
+  background: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Make sure the bottom spacing uses dark background */
+.dark-mode .igx-list__items-container,
+.dark-mode .igx-list__items,
+.dark-mode .chat-history {
+  background: #000 !important;
+}
+
+/* Target Ignite UI input bundle internals that create the white rounded band */
+.dark-mode .igx-input-group__bundle-main,
+.dark-mode .igx-input-group__bundle,
+.dark-mode .igx-input-group__bundle-main .igx-input-group__box,
+.dark-mode .igx-input-group__bundle-main .igx-input-group__container,
+.dark-mode .igx-input-group__bundle-main .igx-input-group__wrapper {
+  background: #0f0f0f !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Ensure any internal child elements use transparent backgrounds so no white shows through */
+.dark-mode .igx-input-group__bundle-main * {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* For completeness, also override the bundle main produced wrapper element */
+.dark-mode .igx-input-group__bundle-main[role],
+.dark-mode .igx-input-group__bundle-main[aria-hidden] {
+  background: #0f0f0f !important;
+}
+
+
+
+
