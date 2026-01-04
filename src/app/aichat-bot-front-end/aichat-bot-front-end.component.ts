@@ -29,7 +29,7 @@ export class AIChatBotFrontEndComponent implements OnInit {
         if (el) {
           el.scrollTop = el.scrollHeight;
         }
-      } catch (_e) {
+      } catch {
         // ignore
       }
     }, 0);
