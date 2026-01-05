@@ -8,6 +8,7 @@ import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-
 getTestBed().initTestEnvironment(
   BrowserTestingModule,
   platformBrowserTesting(), {
-    teardown: { destroyAfterEach: false }
+    // enable Angular testing teardown to destroy fixtures after each test
+    teardown: { destroyAfterEach: true }
   }
 );
