@@ -1,4 +1,11 @@
 module.exports = function (config) {
+  // ensure any unexpected uncaught exceptions cause an exit (helps CI avoid hanging)
+  process.on('uncaughtException', (err) => {
+    // eslint-disable-next-line no-console
+    console.error('Uncaught exception in Karma:', err && err.stack ? err.stack : err)
+    process.exit(1)
+  })
+
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
